@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Biblioteca Pokémon</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body{
+      background: #f5f5f5;
+    }
+
+    header{
+      background: #ef5350;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .container{
+      width: 90%;
+      max-width: 1200px;
+      margin: 30px auto;
+    }
+
+    .search{
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .search input{
+      width: 300px;
+      padding: 10px;
+      border: 2px solid #ef5350;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    .pokemon-grid{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+      gap: 20px;
+    }
+
+    .card{
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+
+    .card:hover{
+      transform: translateY(-5px);
+    }
+
+    .card img{
+      width: 120px;
+      height: 120px;
+    }
+
+    .card h2{
+      margin: 10px 0;
+      color: #333;
+    }
+
+    .type{
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 20px;
+      background: #42a5f5;
+      color: white;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>📚 Biblioteca Pokémon</h1>
+    <p>Conheça seus Pokémons favoritos</p>
+  </header>
+
+  <div class="container">
+
+    <div class="search">
+      <input type="text" id="searchInput" placeholder="Pesquisar Pokémon...">
+    </div>
+
+    <div class="pokemon-grid" id="pokemonGrid">
+
+      <div class="card">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="Pikachu">
+        <h2>Pikachu</h2>
+        <span class="type">Elétrico</span>
+      </div>
+
+      <div class="card">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" alt="Bulbasaur">
+        <h2>Bulbasaur</h2>
+        <span class="type">Planta</span>
+      </div>
+
+      <div class="card">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png" alt="Charmander">
+        <h2>Charmander</h2>
+        <span class="type">Fogo</span>
+      </div>
+
+      <div class="card">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png" alt="Squirtle">
+        <h2>Squirtle</h2>
+        <span class="type">Água</span>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const API_URL = "https://backbibliotecapokemon.onrender.com";
+
+    const searchInput = document.getElementById("searchInput");
+    const cards = document.querySelectorAll(".card");
+
+    searchInput.addEventListener("keyup", () => {
+      const value = searchInput.value.toLowerCase();
+
+      cards.forEach(card => {
+        const name = card.querySelector("h2").textContent.toLowerCase();
+
+        if(name.includes(value)){
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    });
+
+    console.log("API conectada:", API_URL);
+  </script>
+
+</body>
+</html>
