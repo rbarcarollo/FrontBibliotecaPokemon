@@ -82,17 +82,6 @@
       color: white;
       font-size: 14px;
     }
-
-    .status-api {
-      background: #e3f2fd;
-      border: 2px solid #2196f3;
-      color: #0d47a1;
-      margin-bottom: 25px;
-      padding: 15px;
-      border-radius: 10px;
-      text-align: center;
-      font-weight: bold;
-    }
   </style>
 </head>
 <body>
@@ -103,10 +92,6 @@
   </header>
 
   <div class="container">
-
-    <div id="resposta" class="status-api">
-      Aguardando conexão com a API...
-    </div>
 
     <div class="search">
       <input type="text" id="searchInput" placeholder="Pesquisar Pokémon...">
@@ -144,18 +129,6 @@
   <script>
     const API_URL = "https://backbibliotecapokemon.onrender.com";
 
-    async function chamarAPI() {
-      try {
-        const resposta = await fetch(` ${API_URL}/v1`);
-        const dados = await resposta.json();
-        document.getElementById("resposta").textContent = ` ${dados.message} chamada em ${dados.chamada_em}`;
-      } catch (error) {
-        console.error(error);
-        document.getElementById("resposta").textContent = "Erro ao conectar com a API (verifique o CORS).";
-      }
-    }
-    chamarAPI();
-
     const searchInput = document.getElementById("searchInput");
     const cards = document.querySelectorAll(".card");
 
@@ -172,6 +145,8 @@
         }
       });
     });
+
+    console.log("API conectada:", API_URL);
   </script>
 
 </body>
